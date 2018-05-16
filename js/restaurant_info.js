@@ -58,9 +58,12 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+
+  // added for accessibility
   image.alt = `image of ${restaurant.name}`;
-  image.title= restaurant.name;
-  
+  image.title= `You could be dining at ${restaurant.name}`;
+  //
+
   let figure_caption = document.getElementById('figure-caption');
   figure_caption.innerHTML = restaurant.name;
 
@@ -100,9 +103,14 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
  */
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
+
+  // TEST remove h2 element - put name & date into <li>
+  /*
   const title = document.createElement('h2');
-  title.innerHTML = 'Reviews';
+  title.innerHTML = 'Reviews' + reviews[0].name + reviews[0].date;
   container.appendChild(title);
+  */
+  // TEST
 
   if (!reviews) {
     const noReviews = document.createElement('p');
@@ -122,13 +130,23 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
-  const name = document.createElement('p');
-  name.innerHTML = review.name;
-  li.appendChild(name);
+  const div = document.createElement('div');
+  li.appendChild(div);
 
-  const date = document.createElement('p');
-  date.innerHTML = review.date;
-  li.appendChild(date);
+  // TEST remove h2 element - put name & date into <li>
+  const reviewer_name = document.createElement('h2');
+  reviewer_name.className = 'align-left';
+  reviewer_name.innerHTML = review.name;
+  div.appendChild(reviewer_name);
+
+  const review_date = document.createElement('h2');
+  review_date.className = 'align-right';
+  review_date.innerHTML = review.date;
+  div.appendChild(review_date);
+
+  const br = document.createElement('br');
+  br.className = 'clear-both';
+  div.appendChild(br);
 
   const rating = document.createElement('p');
   rating.innerHTML = `Rating: ${review.rating}`;
@@ -147,7 +165,7 @@ createReviewHTML = (review) => {
 fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
-  li.innerHTML = restaurant.name;
+  li.innerHTML = ` / ${restaurant.name}`;
   breadcrumb.appendChild(li);
 }
 
