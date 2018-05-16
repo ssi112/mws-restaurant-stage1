@@ -1,0 +1,347 @@
+@charset "utf-8";
+/* 
+ * CSS Document version 9999 
+ * working copy (styles2.css) to replace original project styles.css
+ */
+
+body {
+   font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+   overflow: auto;
+   display:grid;
+   grid-template-columns: auto;
+   grid-template-rows: auto auto auto; /* 60% 40%; */
+   grid-template-areas: 
+      "header"
+      "body"
+      "cards";
+}
+
+h1, h2, h3, h4, h5, h6 {
+   text-align: center;
+   /* padding-left: 5%; */
+}
+
+ul, li {
+	font-size: 1em;
+	color: black; /* #000000; */
+   display: block; 
+}
+
+a {
+	color: orange;
+	text-decoration: none;
+}
+
+a:hover, a:focus, a:visited  {
+	color: #3397db;
+	text-decoration: none;
+}
+
+a img{
+	border: none 0px;
+   max-width: 100%;  /* */
+}
+
+/* <p> inside restaurant-container may not be needed */
+p {
+   padding: 2%;
+}
+
+img {
+   text-align: center;
+   max-width: 100%
+   height: auto;
+   width: auto;
+}
+
+header {
+   grid-area: header;
+   padding: 1em;
+}
+
+#maincontent {
+   grid-area: body;
+   margin: 0 auto;
+   /*max-width: 1020px; /* 100%; */
+   width: 98%;
+}
+
+#restaurant-list {
+   grid-area: cards;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+#footer {
+   background-color: #444; 
+   color: #FFFFFF;  /* #aaa */  
+   letter-spacing: 1.5px;
+   font-size: 0.75em;
+   padding: 25px;
+   text-align: center;
+   /* text-transform: uppercase; */
+}
+
+/* ====================== Navigation ====================== */
+nav {
+  width: 100%;
+  height: auto; /* 80px; */
+  background-color: #252831;
+  text-align:center;
+}
+
+/*
+nav h1 {
+  margin: auto;
+}
+*/
+
+nav h1 a {
+  color: #fff;
+  font-size: 1.25em; /* 14pt; */
+  font-weight: 200;
+  letter-spacing: 2.5px; /* 10px; */
+  /* text-transform: uppercase; */
+}
+
+.skip-link {   /* position off screen for readers */
+   position: absolute;
+   top: -100px;
+   left: -800px;
+   z-index: 100;
+}
+
+
+/* ====================== Map ====================== */
+#map {
+  /* height: 400px; /* touching this breaks google map! WHY? */
+  min-height: 400px; 
+  width: 100%;
+  /* background-color: #ccc; */
+}
+
+/* 
+   only way I found to make this map responsive - everything else broke it 
+   
+   https://www.labnol.org/internet/embed-responsive-google-maps/28333/
+   Written by Amit Agarwal on Jul 18, 2014
+*/
+/*
+.google-maps {
+  position: relative;
+  padding-bottom: 75%; // This is the aspect ratio
+  height: 0;
+  overflow: hidden;
+}
+.google-maps iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+*/
+
+/* ====================== Restaurant Filtering ====================== */
+.filter-options {
+  width: 100%;
+  height: auto; /* 50px; */
+  background-color: #000080; /* #3397DB; */
+  color: #fff; /* white */
+  /* align-items: center; */ 
+}
+
+.filter-options select {
+  font-size: 0.90em; /* 11pt; */
+  height: auto; /* 35px; /* auto */
+  width: auto; /* 200px; */
+  margin: 10px; 
+}
+
+#neighborhoods-select {
+   display: inline;
+   width: calc(95% / 2);  /* give each 1/2 width available with a margin */
+}
+
+#cuisines-select {
+   display: inline;
+   width: calc(95% / 2);  /* give each 1/2 width available with a margin */
+   margin-right: 0;
+}
+
+.filter-options select option { 
+   color: #000080;
+}
+
+/* ====================== Restaurant Listing ====================== */
+#restaurant-list ul  {
+   display: grid;
+   list-style-type: none;
+   margin: auto;
+   padding: 0;
+   /*
+   grid-template-columns: repeat(3, auto);
+   grid-template-rows: repeat(2, auto);
+   */
+}
+
+#restaurants-list li {
+   border: 2px solid #ccc;
+   margin: 0 0 25px 10px;
+   padding: 25px 10px 25px 10px;
+   list-style: none;
+   text-align: center;
+   display: inline-block; 
+   max-width: 270px; /* 270px; */
+}
+
+#restaurants-list .restaurant-img {
+   max-height: 100%;
+   max-width: 100%;
+   /*width: 100%;
+   height: 100%; */
+}
+
+#restaurants-list li h1 {
+  /* color: #f18200; */
+  /* font-family: Arial,sans-serif; */
+  font-size: 14pt;
+  /* margin: 20px 0 10px; */
+}
+
+#restaurants-list p {
+  margin: 0;
+  padding: 0;
+  font-size: 11pt;
+}
+
+#restaurants-list li a {
+  background-color: orange;
+  border-bottom: 3px solid #eee;
+  color: #fff;
+  display: block;
+  font-size: 1.1em;
+  margin: 15px 0 0;
+  padding: 10px 30px 10px;
+  text-align: center;
+}
+
+#figure-caption {
+   font-size: 1.25em;
+   font-weight: 200;
+   text-align: center;
+}
+
+#restaurants-list img {
+   border-top-left-radius: 15px;  
+}
+
+
+/* ====================== Restaurant Details ====================== */
+#breadcrumb  li {
+   display: inline;
+}
+
+#restaurant-img {
+   text-align: center;
+   height: auto;
+   width: 100%; 
+   border-top-left-radius: 35px;
+}
+
+#restaurant-name {
+   color: #f18200;
+   font-family: Arial,sans-serif;
+   font-size: 20pt;
+   font-weight: 200;
+   letter-spacing: 0;
+   margin: 15px 0 30px;
+   line-height: 1.1;
+}
+
+#restaurant-cuisine {
+   background-color: #333;
+   color: #ddd;
+   font-size: 1.05em;
+   letter-spacing: 10px;
+   padding: 10px 0; 
+   text-align: center;
+   text-transform: uppercase;
+   width: 100%;
+}
+
+#restaurant-address {
+  font-size: 1.05em;
+  margin: 10px 0px;
+}
+
+#restaurant-hours td {
+   font-size: 1em;
+   color: #666;
+   padding-left: 20px;
+   margin-left: 25px;
+}
+
+#reviews-list div, h2 {
+   border-top-left-radius: 25px;
+   background-color: #444;
+   color: #FFFFFF;   
+   letter-spacing: 1.5px;
+   font-size: 1.25em;
+   padding: 15px;
+   margin: 0;
+}
+
+#reviews-list div {
+   background-color: #444; 
+   max-width: 92%;
+}
+
+.align-left {
+   float: left;
+}
+
+.align-right {
+   float: right;
+}
+
+.clear-both {
+   clear: both;
+}
+
+.rating {
+   background-color: orange;
+   color: #FFFFFF;   
+   letter-spacing: 1.5px;
+   font-size: 1.15em;
+   padding: 15px;
+   margin-left: 25px;
+   width: 15%;
+}
+
+.rating-comments {
+   color: #666;
+   margin-left: 25px;
+   max-width: 80%;
+   padding: 0 0 50px 0;
+}
+
+/* ====================== Media Queries ====================== */
+/* not needed since using grid
+@media screen and (max-width: 480px) {
+   body {
+      font-size: 14px;
+   }
+}
+
+@media screen and (max-width: 768px) {
+   nav {
+      margin: 0 auto;
+      padding-left: 0px;
+   }
+}
+*/
+
+
+

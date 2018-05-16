@@ -149,10 +149,12 @@ createReviewHTML = (review) => {
   div.appendChild(br);
 
   const rating = document.createElement('p');
+  rating.className = 'rating';
   rating.innerHTML = `Rating: ${review.rating}`;
   li.appendChild(rating);
 
   const comments = document.createElement('p');
+  comments.className = 'rating-comments';
   comments.innerHTML = review.comments;
   li.appendChild(comments);
 
