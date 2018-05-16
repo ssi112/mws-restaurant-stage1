@@ -104,14 +104,6 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
 
-  // TEST remove h2 element - put name & date into <li>
-  /*
-  const title = document.createElement('h2');
-  title.innerHTML = 'Reviews' + reviews[0].name + reviews[0].date;
-  container.appendChild(title);
-  */
-  // TEST
-
   if (!reviews) {
     const noReviews = document.createElement('p');
     noReviews.innerHTML = 'No reviews yet!';
@@ -133,7 +125,6 @@ createReviewHTML = (review) => {
   const div = document.createElement('div');
   li.appendChild(div);
 
-  // TEST remove h2 element - put name & date into <li>
   const reviewer_name = document.createElement('h2');
   reviewer_name.className = 'align-left';
   reviewer_name.innerHTML = review.name;
