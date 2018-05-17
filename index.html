@@ -11,7 +11,7 @@
 
 <body role="document">
    <header role=”banner”>
-      <a href="#maincontent" class="skip-link">Skip to main content</a>
+      <a href="#filter-options" class="skip-link">Skip to filter options</a>
       <nav role=”navigation”>
          <h1><a href="/" role="link">Restaurant Reviews</a></h1>
       </nav>
@@ -21,14 +21,14 @@
     <section id="map-container" role="application">
       <div id="map"></div>
     </section>
-    <section role="region">
+    <section id="filter-options" role="region">
       <div class="filter-options">
         <h2 role="banner">Filter Results</h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
-          <option value="all">All Neighborhoods</option>
+          <option value="all neighborhoods">All Neighborhoods</option>
         </select>
         <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
-          <option value="all">All Cuisines</option>
+          <option value="all cuisines">All Cuisines</option>
         </select>
       </div>
       <div class="restaurant-cards" >

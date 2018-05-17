@@ -217,8 +217,8 @@ nav h1 a {
 }
 
 #restaurants-list li a {
-  background-color: orange;
-  border-bottom: 3px solid #eee;
+  background-color: #000080;
+  /* border-bottom: 3px solid #eee;*/ 
   color: #fff;
   display: block;
   font-size: 1.1em;
@@ -285,7 +285,7 @@ nav h1 a {
 
 #reviews-list div, h2 {
    border-top-left-radius: 25px;
-   background-color: #444;
+   /* background-color: #444; */
    color: #FFFFFF;   
    letter-spacing: 1.5px;
    font-size: 1.25em;
@@ -311,7 +311,7 @@ nav h1 a {
 }
 
 .rating {
-   background-color: orange;
+   background-color: #000080;
    color: #FFFFFF;   
    letter-spacing: 1.5px;
    font-size: 1.15em;

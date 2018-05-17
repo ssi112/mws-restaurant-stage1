@@ -34,6 +34,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
   neighborhoods.forEach(neighborhood => {
     const option = document.createElement('option');
     option.innerHTML = neighborhood;
+    option.label = neighborhood;
     option.value = neighborhood;
     select.append(option);
   });
@@ -62,6 +63,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
   cuisines.forEach(cuisine => {
     const option = document.createElement('option');
     option.innerHTML = cuisine;
+    option.label = cuisine;
     option.value = cuisine;
     select.append(option);
   });
@@ -145,7 +147,7 @@ createRestaurantHTML = (restaurant) => {
   // added for accessibility
   image.alt = `image of ${restaurant.name}`;
   image.title = `You could be dining at ${restaurant.name}`;
-  // added for accessibility  
+  // added for accessibility
 
   li.append(image);
 
