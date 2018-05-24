@@ -2,7 +2,7 @@
  * serviceworker.js for restaurant review (rrv)
  */
 
-var RRV_CACHE = "rest-review-cache-v1";
+var RRV_CACHE = "rest-review-cache-v4";
 var RRV_CACHE_URLS = [
   '/',  // include the root
   '/index.html',
@@ -26,6 +26,7 @@ var RRV_CACHE_URLS = [
 ];
 
 
+// pause the install event until we cache necessary assets
 this.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open('RRV_CACHE').then(function(cache) {
@@ -35,14 +36,40 @@ this.addEventListener('install', function(event) {
 });
 
 
+/*
+ * If the response is defined then there's a match and the cached
+ * response is returned. If it's not defined, then no match and
+ * the request needs to go to the web server to get it.
+ */
 this.addEventListener('fetch', function(event) {
 	event.respondWith(caches.match(event.request).then(function(response){
 		if(response)
-			return response;
-		return fetch(event.request).then(function(response){
-			return response;
+			return response; // return cached item
+		return fetch(event.request).then(function(response) {
+			return response; // else return whatever requested
 		});
 	}));
 });
+
+
+// remove old cache if version changes
+self.addEventListener("activate", function(event) {
+  event.waitUntil(
+    // .keys - array of all caches created by our app
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        // create an array of promises to pass to .all
+        // by using .map to create a promise for each cache name
+        // all promises (deletes) must pass success for Promise.all to succeed
+        cacheNames.map(function(cacheName) {
+          if (cacheName !== RRV_CACHE && cacheName.startsWith("rest-review-cache-")) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
+
 
 
