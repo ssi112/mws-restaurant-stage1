@@ -28,11 +28,11 @@ var RRV_CACHE_URLS = [
 
 // pause the install event until we cache necessary assets
 this.addEventListener('install', function(event) {
-	event.waitUntil(
-		caches.open('RRV_CACHE').then(function(cache) {
-			return cache.addAll(RRV_CACHE_URLS);
-   })
- );
+  event.waitUntil(
+    caches.open('RRV_CACHE').then(function(cache) {
+      return cache.addAll(RRV_CACHE_URLS);
+    })
+  );
 });
 
 
@@ -42,13 +42,13 @@ this.addEventListener('install', function(event) {
  * the request needs to go to the web server to get it.
  */
 this.addEventListener('fetch', function(event) {
-	event.respondWith(caches.match(event.request).then(function(response){
-		if(response)
-			return response; // return cached item
-		return fetch(event.request).then(function(response) {
-			return response; // else return whatever requested
-		});
-	}));
+  event.respondWith(caches.match(event.request).then(function(response){
+    if(response)
+      return response; // return cached item
+    return fetch(event.request).then(function(response) {
+      return response; // else return whatever requested
+    });
+  }));
 });
 
 
