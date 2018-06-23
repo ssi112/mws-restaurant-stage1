@@ -1,8 +1,9 @@
 let restaurants,
   neighborhoods,
-  cuisines
-var newMap
-var markers = []
+  cuisines;
+var newMap;
+var markers = [];
+var apiKey = config.MapBoxKey;
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -79,7 +80,7 @@ initMap = () => {
         zoom: 12,
         scrollWheelZoom: false
       });
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token=pk.eyJ1Ijoic3NpMTEyIiwiYSI6ImNqaXE1NzVnMDA0c3Uzd3M0c3p3MXJxNDIifQ.elxzoQs3cq5Jie3pKYQphw', {
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token=' + apiKey, {
     mapboxToken: '<your MAPBOX API KEY HERE>',
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
