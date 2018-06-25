@@ -41,15 +41,79 @@ this.addEventListener('install', function(event) {
  * response is returned. If it's not defined, then no match and
  * the request needs to go to the web server to get it.
  */
+/* !!! ORIGINAL CODE !!!
 this.addEventListener('fetch', function(event) {
-  event.respondWith(caches.match(event.request).then(function(response){
-    if(response)
-      return response; // return cached item
-    return fetch(event.request).then(function(response) {
-      return response; // else return whatever requested
-    });
-  }));
+    event.respondWith(caches.match(event.request).then(function(response){
+        if(response)
+            return response; // return cached item
+        return fetch(event.request).then(function(response) {
+            return response; // else return whatever requested
+        });
+    }));
 });
+*/
+
+
+/*
+ * !!! New and Improve fetch event listener !!!
+ * Cache Strategy - cache 1st, falling back to network with requent updates
+ *
+ * 1st test if request is either for the root or the index.html
+ * returns the cached version of index.html, if found, or a promise to
+ * return it from network if not in cache
+ *
+ * Test if request is for any other URLs that might be cached. If so,
+ * return request from cache. If not found in cache, try to get it from
+ * the network.
+ *
+ * Requests not matching either of these pass through and behave normally
+ */
+self. addEventListener("fetch", function(event) {
+  let requestURL = new URL(event.request.url);
+  // handle request for index.html
+  if (requestURL.pathname === "/" || requestURL.pathname === "/index.html") {
+    event.respondWith(
+      caches.open(RRV_CACHE).then(function(cache) {
+        return cache.match("/index.html").then(function(cachedResponse) {
+          let fetchPromise = fetch("/index.html")
+            .then(function(networkResponse) {
+              cache.put("/index.html", networkResponse.clone());
+              return networkResponse;
+            });
+          return cachedResponse || fetchPromise;
+        });
+      })
+    );
+
+  // handle requests for restaurant.html
+  } else if (requestURL.pathname === "/restaurant.html") {
+    event.respondWith(
+      caches.open(RRV_CACHE).then(function(cache) {
+        return cache.match("/restaurant.html").then(function(cachedResponse) {
+          let fetchPromise = fetch("/restaurant.html")
+            .then(function(networkResponse) {
+              cache.put("/restaurant.html", networkResponse.clone());
+              return networkResponse;
+            });
+          return cachedResponse || fetchPromise;
+        });
+      })
+    );
+
+  } else if (
+      RRV_CACHE_URLS.includes(requestURL.href) ||
+      RRV_CACHE_URLS.includes(requestURL.pathname)
+    ) {
+      event.respondWith(
+        caches.open(RRV_CACHE).then(function(cache) {
+          return cache.match(event.request).then(function(response) {
+            return response || fetch(event.request);
+          });
+        })
+      );
+    }
+});
+
 
 
 // remove old cache if version changes
@@ -70,6 +134,7 @@ self.addEventListener("activate", function(event) {
     })
   );
 });
+
 
 
 
