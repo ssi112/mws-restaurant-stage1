@@ -5,16 +5,16 @@
  */
 
 body {
-   font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 	font-size: 18px;
-   overflow: auto;
-   display:grid;
-   grid-template-columns: auto;
-   grid-template-rows: auto auto auto;
-   grid-template-areas:
-      "header"
-      "body"
-      "cards";
+  overflow: auto;
+  display:grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "header"
+    "body"
+    "cards";
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -244,11 +244,30 @@ nav h1 a {
    margin-left: 25px;
 }
 
+/* ------------ added grid display to review  ------------- */
+#reviews-list {
+   grid-area: cards;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+#reviews-list ul {
+  display: grid;
+  list-style-type: none;
+}
+
+#reviews-list li {
+  list-style-type: none;
+  /* margin: 20px; */
+  display: unset;
+  padding: 10px;
+}
+
 #reviews-list div, h2 {
    border-top-left-radius: 25px;
    color: #FFFFFF;
    letter-spacing: 1.5px;
-   font-size: 1.25em;
+   font-size: 0.95em;
    padding: 15px;
    margin: 0;
 }
@@ -273,8 +292,8 @@ nav h1 a {
 .rating {
    background-color: #000080;
    color: #FFFFFF;
-   letter-spacing: 1.5px;
-   font-size: 1.15em;
+   letter-spacing: 1.25px;
+   font-size: 0.85em;
    padding: 15px;
    margin-left: 25px;
    width: 15%;
@@ -282,6 +301,7 @@ nav h1 a {
 
 .rating-comments {
    color: #666;
+   font-size: 0.90em;
    margin-left: 25px;
    max-width: 80%;
    padding: 0 0 50px 0;

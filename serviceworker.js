@@ -56,7 +56,7 @@ this.addEventListener('fetch', function(event) {
 
 /*
  * !!! New and Improve fetch event listener !!!
- * Cache Strategy - cache 1st, falling back to network with requent updates
+ * Cache Strategy - cache 1st, falling back to network with frequent updates
  *
  * 1st test if request is either for the root or the index.html
  * returns the cached version of index.html, if found, or a promise to
