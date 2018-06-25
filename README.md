@@ -18,9 +18,9 @@ In a terminal, check the version of Python you have: `python -V`. If you have Py
 
 *Alternative to Python server*
 - First install Node.js then install NPM server
--- npm install http-server -g (-g flag install its globablly)
--- Run it from your project directory
--- http-server -a localhost -p 8000
+  - npm install http-server -g (-g flag install its globally)
+- Run it from your project directory
+  - http-server -a localhost -p 8000
 
 Additional info: [link to httpserver doc](https://www.npmjs.com/package/httpserver)
 
